@@ -2,8 +2,8 @@ package enums.mapper;
 
 public enum MapperEnum {
 
-    AuthorityFlag(0, "authority"),
-    PostFlag(1, "post status");
+    AuthorityFlagEnum(0, "authority"),
+    PostFlagEnum(1, "post status");
 
     private int code;
     private String msg;

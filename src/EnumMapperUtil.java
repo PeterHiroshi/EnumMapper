@@ -40,10 +40,10 @@ public class EnumMapperUtil {
         Class enumClass = getClassByClassName(enumTypeName, ENUM_MAPPER_PACKAGE_NAME);
         if (enumClass.isEnum()) {
             Integer enumTypeCode = Integer.class.cast(fieldValue);
-            List<Object> enumMapperObjs = java.util.Arrays.asList(Object.class.cast(enumClass.getEnumConstants()));
+            Object[] enumMapperObjs = enumClass.getEnumConstants();
             List<MapperEnum> enumMappers = new ArrayList<>();
             for (Object o : enumMapperObjs) {
-                enumMappers.add((MapperEnum)o);
+                enumMappers.add(MapperEnum.class.cast(o));
             }
             MapperEnum mapperConstant = enumMappers.stream().
                     filter(mapperEnum -> enumTypeCode.equals(mapperEnum.getCode())).collect(Collectors.toList()).get(0);
