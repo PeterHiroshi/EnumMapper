@@ -1,6 +1,6 @@
 package enums;
 
-public enum PostFlag {
+public enum PostFlagEnum {
 
     NO(0, "not post"),
     YES(1, "posted"),
@@ -10,7 +10,7 @@ public enum PostFlag {
     private int code;
     private String msg;
 
-    PostFlag(int code, String msg) {
+    PostFlagEnum(int code, String msg) {
         this.code = code;
         this.msg = msg;
     }

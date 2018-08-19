@@ -6,7 +6,8 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface EnumTypeMapper {
-    String MAPPER = "Mapper";
+    String MAPPER = "MapperEnum";
+
     String type();
 
 }

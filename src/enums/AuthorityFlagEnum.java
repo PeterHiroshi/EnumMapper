@@ -1,6 +1,6 @@
 package enums;
 
-public enum AuthorityFlag {
+public enum AuthorityFlagEnum {
 
     NONE(-1, "none"),
     ADMIN(0, "administrator"),
@@ -9,7 +9,7 @@ public enum AuthorityFlag {
     private int code;
     private String msg;
 
-    AuthorityFlag(int code, String msg) {
+    AuthorityFlagEnum(int code, String msg) {
         this.code = code;
         this.msg = msg;
     }
