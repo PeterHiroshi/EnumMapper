@@ -76,6 +76,7 @@ public class EnumMapperUtil {
                 mapperCodeMsgMap.put(enumClassName, enumClassMsg);
                 return mapperCodeMsgMap;
             } else {
+                System.out.println("<invalid enum type code>");
                 return mapperCodeMsgMap;
             }
         }

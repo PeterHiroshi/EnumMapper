@@ -19,9 +19,9 @@ public class LogShower {
                 Class enumclass = EnumMapperUtil.getClassByClassName(enumClassName, EnumMapperUtil.ENUM_CLASS_PACKAGE_NAME);
                 Map<Integer, String> codeMsgMap = EnumMapperUtil.getCodeMsgMapByEnumClass(enumclass);
                 List<String> preMsgs = codeMsgMap.entrySet().stream().filter(codeMsg->codeMsg.getKey().equals(logEtem.getPre())).map(mp->mp.getValue()).collect(Collectors.toList());
-                String preMsg = preMsgs.isEmpty() ? "<error code>" : preMsgs.get(0);
+                String preMsg = preMsgs.isEmpty() ? "<invalid code>" : preMsgs.get(0);
                 List<String> postMsgs = codeMsgMap.entrySet().stream().filter(codeMsg->codeMsg.getKey().equals(logEtem.getPost())).map(mp->mp.getValue()).collect(Collectors.toList());
-                String postMsg = postMsgs.isEmpty() ? "<error code>" : postMsgs.get(0);
+                String postMsg = postMsgs.isEmpty() ? "<invalid code>" : postMsgs.get(0);
                 System.out.println(enumClassMsg + ": " + preMsg + "------->" + postMsg);
             }
 
