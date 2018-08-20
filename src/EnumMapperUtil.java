@@ -67,12 +67,17 @@ public class EnumMapperUtil {
             for (Object o : enumMapperObjs) {
                 enumMappers.add(MapperEnum.class.cast(o));
             }
-            MapperEnum mapperConstant = enumMappers.stream().
-                    filter(mapperEnum -> enumTypeCode.equals(mapperEnum.getCode())).collect(Collectors.toList()).get(0);
-            String enumClassName = mapperConstant.toString();
-            String enumClassMsg = mapperConstant.getMsg();
-            mapperCodeMsgMap.put(enumClassName, enumClassMsg);
-            return mapperCodeMsgMap;
+            List<MapperEnum> mapperConstants = enumMappers.stream().
+                    filter(mapperEnum -> enumTypeCode.equals(mapperEnum.getCode())).collect(Collectors.toList());
+            if (!mapperConstants.isEmpty()) {
+                MapperEnum mapperConstant = mapperConstants.get(0);
+                String enumClassName = mapperConstant.toString();
+                String enumClassMsg = mapperConstant.getMsg();
+                mapperCodeMsgMap.put(enumClassName, enumClassMsg);
+                return mapperCodeMsgMap;
+            } else {
+                return mapperCodeMsgMap;
+            }
         }
         else {
             return mapperCodeMsgMap;
