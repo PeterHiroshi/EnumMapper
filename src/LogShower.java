@@ -10,7 +10,7 @@ public class LogShower {
         this.logList = logList;
     }
 
-    public void show() throws Exception {
+    public void show() {
         for (MyLog logEtem : logList) {
             Map<String, String> enumClassMap = EnumMapperUtil.getEnumClassMap(logEtem, "type");
             if (enumClassMap != null && !enumClassMap.isEmpty()) {

@@ -2,6 +2,7 @@ import annotation.EnumTypeMapper;
 import enums.mapper.MapperEnum;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,30 +16,51 @@ public class EnumMapperUtil {
     public static final String ENUM_MAPPER_PACKAGE_NAME = "enums.mapper";
     public static final String ENUM_CLASS_PACKAGE_NAME = "enums";
 
-    public static Map<Integer, String> getCodeMsgMapByEnumClass(Class enumClass) throws Exception{
+    public static Map<Integer, String> getCodeMsgMapByEnumClass(Class enumClass) {
         Map<Integer, String> codeMsgMap = new HashMap<>();
         if (!enumClass.isEnum()) {
             return codeMsgMap;
         }
-        Method getCode = enumClass.getMethod("getCode");
-        Method getMsg = enumClass.getMethod("getMsg");
-        Object[] objs = enumClass.getEnumConstants();
-        for (Object obj : objs) {
-            codeMsgMap.put((Integer)getCode.invoke(obj), (String)getMsg.invoke(obj));
+        try {
+            Method getCode = enumClass.getMethod("getCode");
+            Method getMsg = enumClass.getMethod("getMsg");
+            Object[] objs = enumClass.getEnumConstants();
+            for (Object obj : objs) {
+                codeMsgMap.put((Integer)getCode.invoke(obj), (String)getMsg.invoke(obj));
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
         }
         return codeMsgMap;
     }
 
-    public static Map<String, String> getEnumClassMap(Object obj, String fieldName) throws Exception {
+    public static Map<String, String> getEnumClassMap(Object obj, String fieldName) {
         Map<String, String> mapperCodeMsgMap = new HashMap<>();
         String enumTypeName = getEnumTypeNameByFieldName(obj.getClass(), fieldName);
-        Field field = obj.getClass().getDeclaredField(fieldName);
+        Field field = null;
+        try {
+            field = obj.getClass().getDeclaredField(fieldName);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+            return mapperCodeMsgMap;
+        }
         if (!field.isAccessible()) {
             field.setAccessible(true);
         }
-        Object fieldValue = field.get(obj);
-        Class enumClass = getClassByClassName(enumTypeName, ENUM_MAPPER_PACKAGE_NAME);
-        if (enumClass.isEnum()) {
+        Object fieldValue = null;
+        Class enumClass = null;
+        try {
+            fieldValue = field.get(obj);
+            enumClass = getClassByClassName(enumTypeName, ENUM_MAPPER_PACKAGE_NAME);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return mapperCodeMsgMap;
+        }
+        if (enumClass!=null && enumClass.isEnum()) {
             Integer enumTypeCode = Integer.class.cast(fieldValue);
             Object[] enumMapperObjs = enumClass.getEnumConstants();
             List<MapperEnum> enumMappers = new ArrayList<>();
@@ -57,14 +79,26 @@ public class EnumMapperUtil {
         }
     }
 
-    public static Class getClassByClassName(String className, String packageName) throws Exception {
-        Class clazz = Class.forName(packageName + "." + className);
+    public static Class getClassByClassName(String className, String packageName){
+        Class clazz = null;
+        try {
+            clazz = Class.forName(packageName + "." + className);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         return clazz;
     }
 
-    private static String getEnumTypeNameByFieldName(Class clazz, String fieldName) throws Exception {
-        Field field = clazz.getDeclaredField(fieldName);
-        return getEnumTypeNameByField(field);
+    private static String getEnumTypeNameByFieldName(Class clazz, String fieldName) {
+        String enumTypeName = "";
+        Field field;
+        try {
+            field = clazz.getDeclaredField(fieldName);
+            enumTypeName = getEnumTypeNameByField(field);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+        return enumTypeName;
     }
 
     private static boolean isEnumTypePresentField(Field field) {
