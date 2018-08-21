@@ -9,5 +9,4 @@ public @interface EnumTypeMapper {
     String MAPPER = "MapperEnum";
 
     String type();
-
 }

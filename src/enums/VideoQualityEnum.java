@@ -1,6 +1,6 @@
 package enums;
 
-public enum VideoQualityEnum {
+public enum VideoQualityEnum implements EnumType {
 
     AUDITING(0, "未审核"),
     WEAK(1, "差"),
@@ -20,10 +20,12 @@ public enum VideoQualityEnum {
         this.msg = msg;
     }
 
+    @Override
     public int getCode() {
         return code;
     }
 
+    @Override
     public String getMsg() {
         return msg;
     }

@@ -1,15 +1,16 @@
 package enums;
 
-public enum PostFlagEnum implements EnumType {
-
-    NO(0, "not post"),
-    YES(1, "posted"),
-    ERROR(-1, "error");
+public enum NewVideoQualityEnum implements EnumType {
+    NO(0, "无级别"),
+    S4(1, "S4"),
+    S3(2, "S3"),
+    S2(3, "S2"),
+    S1(4, "S1");
 
     private int code;
     private String msg;
 
-    PostFlagEnum(int code, String msg) {
+    NewVideoQualityEnum(int code, String msg) {
         this.code = code;
         this.msg = msg;
     }

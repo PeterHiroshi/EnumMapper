@@ -1,6 +1,6 @@
 package enums;
 
-public enum AuthorityFlagEnum {
+public enum AuthorityFlagEnum implements EnumType {
 
     NONE(-1, "none"),
     ADMIN(0, "administrator"),
@@ -14,12 +14,13 @@ public enum AuthorityFlagEnum {
         this.msg = msg;
     }
 
+    @Override
     public int getCode() {
         return code;
     }
 
+    @Override
     public String getMsg() {
         return msg;
     }
-
 }

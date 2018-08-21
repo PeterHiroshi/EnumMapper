@@ -1,17 +1,15 @@
 import annotation.EnumTypeMapper;
-import enums.mapper.MapperEnum;
+import mapper.MapperClass;
+import mapper.MapperEnum;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class EnumMapperUtil {
 
-    public static final String ENUM_MAPPER_PACKAGE_NAME = "enums.mapper";
-    public static final String ENUM_CLASS_PACKAGE_NAME = "enums";
+    public static final String ENUM_MAPPER_PACKAGE_NAME = "mapper";
 
     public static Map<Integer, String> getCodeMsgMapByEnumClass(Class enumClass) {
         Map<Integer, String> codeMsgMap = new HashMap<>();
@@ -35,27 +33,27 @@ public class EnumMapperUtil {
         return codeMsgMap;
     }
 
-    public static Map<String, String> getEnumClassMap(Object obj, String fieldName) {
-        Map<String, String> mapperCodeMsgMap = new HashMap<>();
-        String enumTypeName = getEnumTypeNameByFieldName(obj.getClass(), fieldName);
-        Field field = null;
+    public static MapperClass getMapperClassByFieldName(Object obj, String fieldName) {
+        MapperClass mc = null;
+        String mapperEnumName = getEnumTypeNameByFieldName(obj.getClass(), fieldName);
+        Field field;
         try {
             field = obj.getClass().getDeclaredField(fieldName);
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
-            return mapperCodeMsgMap;
+            return mc;
         }
         if (!field.isAccessible()) {
             field.setAccessible(true);
         }
-        Object fieldValue = null;
-        Class enumClass = null;
+        Object fieldValue;
+        Class enumClass;
         try {
             fieldValue = field.get(obj);
-            enumClass = getClassByClassName(enumTypeName, ENUM_MAPPER_PACKAGE_NAME);
+            enumClass = getClassByClassName(mapperEnumName, ENUM_MAPPER_PACKAGE_NAME);
         } catch (Exception e) {
             e.printStackTrace();
-            return mapperCodeMsgMap;
+            return mc;
         }
         if (enumClass!=null && enumClass.isEnum()) {
             Integer enumTypeCode = Integer.class.cast(fieldValue);
@@ -65,17 +63,16 @@ public class EnumMapperUtil {
                 enumMappers.add(MapperEnum.class.cast(o));
             }
             MapperEnum mapperConstant = enumMappers.stream().
-                    filter(mapperEnum -> enumTypeCode.equals(mapperEnum.getCode())).findFirst().orElse(null);
+                    filter(mapperEnum -> enumTypeCode.equals(mapperEnum.getTypeCode())).findFirst().orElse(null);
             if (mapperConstant != null) {
-                String enumClassName = mapperConstant.toString();
-                String enumClassMsg = mapperConstant.getMsg();
-                mapperCodeMsgMap.put(enumClassName, enumClassMsg);
+                mc = mapperConstant.getMc();
+                return mc;
             } else {
                 System.out.println("<invalid enum type code>");
-                return mapperCodeMsgMap;
+                return mc;
             }
         }
-        return mapperCodeMsgMap;
+        return mc;
     }
 
     public static Class getClassByClassName(String className, String packageName){
