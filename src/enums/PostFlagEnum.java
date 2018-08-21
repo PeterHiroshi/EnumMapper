@@ -4,7 +4,7 @@ public enum PostFlagEnum {
 
     NO(0, "not post"),
     YES(1, "posted"),
-    ERROR(2, "error"),
+    ERROR(-1, "error"),
     ;
 
     private int code;

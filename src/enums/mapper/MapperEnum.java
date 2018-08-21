@@ -1,12 +1,16 @@
 package enums.mapper;
 
+import enums.VideoQualityEnum;
+
 public enum MapperEnum {
 
     AuthorityFlagEnum(0, "authority"),
     PostFlagEnum(1, "post_status"),
     VideoQualityEnum(2, "视频质量");
 
+
     private int code;
+    private Enum anEnum;
     private String msg;
 
     MapperEnum(int code, String msg) {

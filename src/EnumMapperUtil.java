@@ -4,10 +4,7 @@ import enums.mapper.MapperEnum;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -67,22 +64,18 @@ public class EnumMapperUtil {
             for (Object o : enumMapperObjs) {
                 enumMappers.add(MapperEnum.class.cast(o));
             }
-            List<MapperEnum> mapperConstants = enumMappers.stream().
-                    filter(mapperEnum -> enumTypeCode.equals(mapperEnum.getCode())).collect(Collectors.toList());
-            if (!mapperConstants.isEmpty()) {
-                MapperEnum mapperConstant = mapperConstants.get(0);
+            MapperEnum mapperConstant = enumMappers.stream().
+                    filter(mapperEnum -> enumTypeCode.equals(mapperEnum.getCode())).findFirst().orElse(null);
+            if (mapperConstant != null) {
                 String enumClassName = mapperConstant.toString();
                 String enumClassMsg = mapperConstant.getMsg();
                 mapperCodeMsgMap.put(enumClassName, enumClassMsg);
-                return mapperCodeMsgMap;
             } else {
                 System.out.println("<invalid enum type code>");
                 return mapperCodeMsgMap;
             }
         }
-        else {
-            return mapperCodeMsgMap;
-        }
+        return mapperCodeMsgMap;
     }
 
     public static Class getClassByClassName(String className, String packageName){
