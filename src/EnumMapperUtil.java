@@ -6,10 +6,23 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class EnumMapperUtil {
 
     private static final String ENUM_MAPPER_PACKAGE_NAME = "mapper";
+    private static final int CACHE_MAX_SIZE = 1 << 10;
+
+    private static ConcurrentHashMap<Integer, MapperClass> cacheMap = new ConcurrentHashMap<>();
+
+    private EnumMapperUtil() {}
+
+    private static void addToCache(Integer key, MapperClass value) {
+        if (cacheMap.size() > CACHE_MAX_SIZE) {
+            cacheMap.clear();
+        }
+        cacheMap.put(key, value);
+    }
 
     public static Map<Integer, String> getCodeMsgMapByEnumClass(Class enumClass) {
         Map<Integer, String> codeMsgMap = new HashMap<>();
@@ -53,6 +66,9 @@ public class EnumMapperUtil {
         }
         if (enumClass!=null && enumClass.isEnum()) {
             Integer enumTypeCode = Integer.class.cast(fieldValue);
+            if (cacheMap.containsKey(enumTypeCode)) {
+                return cacheMap.get(enumTypeCode);
+            }
             Object[] enumMapperObjs = enumClass.getEnumConstants();
             List<MapperEnum> enumMappers = new ArrayList<>();
             for (Object o : enumMapperObjs) {
@@ -61,7 +77,8 @@ public class EnumMapperUtil {
             MapperEnum mapperConstant = enumMappers.stream().
                     filter(mapperEnum -> enumTypeCode.equals(mapperEnum.getTypeCode())).findFirst().orElse(null);
             if (mapperConstant != null) {
-                mc = mapperConstant.getMc();
+                mc = new MapperClass(mapperConstant.getEnumClass(), mapperConstant.getMsg());
+                addToCache(enumTypeCode, mc);
                 return mc;
             } else {
                 System.out.println("<invalid enum type code>");
