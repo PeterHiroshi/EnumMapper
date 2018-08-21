@@ -16,7 +16,7 @@ public enum MapperEnum {
     private Class enumClass;
     private String msg;
 
-    MapperEnum(int typeCode,Class enumClass, String msg) {
+    MapperEnum(int typeCode, Class enumClass, String msg) {
         this.enumClass = enumClass;
         this.typeCode = typeCode;
         this.msg = msg;
