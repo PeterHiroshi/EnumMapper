@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class EnumMapperUtil {
 
     private static final String ENUM_MAPPER_PACKAGE_NAME = "mapper";
-    private static final int CACHE_MAX_SIZE = 1 << 10;
+    private static final int CACHE_MAX_SIZE = 1 << 5;
 
     private static ConcurrentHashMap<Integer, MapperClass> cacheMap = new ConcurrentHashMap<>();
 
