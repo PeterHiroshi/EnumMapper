@@ -9,7 +9,7 @@ import java.util.*;
 
 public class EnumMapperUtil {
 
-    public static final String ENUM_MAPPER_PACKAGE_NAME = "mapper";
+    private static final String ENUM_MAPPER_PACKAGE_NAME = "mapper";
 
     public static Map<Integer, String> getCodeMsgMapByEnumClass(Class enumClass) {
         Map<Integer, String> codeMsgMap = new HashMap<>();
@@ -23,25 +23,21 @@ public class EnumMapperUtil {
             for (Object obj : objs) {
                 codeMsgMap.put((Integer)getCode.invoke(obj), (String)getMsg.invoke(obj));
             }
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
         return codeMsgMap;
     }
 
     public static MapperClass getMapperClassByFieldName(Object obj, String fieldName) {
-        MapperClass mc = null;
+        MapperClass mc;
         String mapperEnumName = getEnumTypeNameByFieldName(obj.getClass(), fieldName);
         Field field;
         try {
             field = obj.getClass().getDeclaredField(fieldName);
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
-            return mc;
+            return null;
         }
         if (!field.isAccessible()) {
             field.setAccessible(true);
@@ -50,10 +46,10 @@ public class EnumMapperUtil {
         Class enumClass;
         try {
             fieldValue = field.get(obj);
-            enumClass = getClassByClassName(mapperEnumName, ENUM_MAPPER_PACKAGE_NAME);
+            enumClass = getClassByClassName(mapperEnumName);
         } catch (Exception e) {
             e.printStackTrace();
-            return mc;
+            return null;
         }
         if (enumClass!=null && enumClass.isEnum()) {
             Integer enumTypeCode = Integer.class.cast(fieldValue);
@@ -69,16 +65,16 @@ public class EnumMapperUtil {
                 return mc;
             } else {
                 System.out.println("<invalid enum type code>");
-                return mc;
+                return null;
             }
         }
-        return mc;
+        return null;
     }
 
-    public static Class getClassByClassName(String className, String packageName){
+    private static Class getClassByClassName(String className){
         Class clazz = null;
         try {
-            clazz = Class.forName(packageName + "." + className);
+            clazz = Class.forName(ENUM_MAPPER_PACKAGE_NAME + "." + className);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -109,6 +105,4 @@ public class EnumMapperUtil {
             return null;
         }
     }
-
-
 }
