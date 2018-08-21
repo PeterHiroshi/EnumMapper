@@ -26,23 +26,11 @@ public enum MapperEnum {
         return typeCode;
     }
 
-    public void setTypeCode(int typeCode) {
-        this.typeCode = typeCode;
-    }
-
     public Class getEnumClass() {
         return enumClass;
     }
 
-    public void setEnumClass(Class enumClass) {
-        this.enumClass = enumClass;
-    }
-
     public String getMsg() {
         return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
     }
 }
