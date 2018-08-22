@@ -42,6 +42,7 @@ class EnumMapperUtil {
             cacheMap.put(enumClass, codeMsgMap);
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
+            return null;
         }
         return codeMsgMap;
     }
