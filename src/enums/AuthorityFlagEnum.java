@@ -6,7 +6,7 @@ public enum AuthorityFlagEnum implements EnumType {
     ADMIN(0, "administrator"),
     OPTERATOR(1, "operator");
 
-    private int code;
+    private Integer code;
     private String msg;
 
     AuthorityFlagEnum(int code, String msg) {
@@ -15,7 +15,7 @@ public enum AuthorityFlagEnum implements EnumType {
     }
 
     @Override
-    public int getCode() {
+    public Integer getCode() {
         return code;
     }
 

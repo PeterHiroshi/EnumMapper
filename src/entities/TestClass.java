@@ -11,7 +11,7 @@ public class TestClass {
         S2(3, "S2"),
         S1(4, "S1");
 
-        private int code;
+        private Integer code;
         private String msg;
 
         TE(int code, String msg) {
@@ -20,7 +20,7 @@ public class TestClass {
         }
 
         @Override
-        public int getCode() {
+        public Integer getCode() {
             return code;
         }
 

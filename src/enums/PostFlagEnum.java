@@ -6,7 +6,7 @@ public enum PostFlagEnum implements EnumType {
     YES(1, "posted"),
     ERROR(-1, "error");
 
-    private int code;
+    private Integer code;
     private String msg;
 
     PostFlagEnum(int code, String msg) {
@@ -15,7 +15,7 @@ public enum PostFlagEnum implements EnumType {
     }
 
     @Override
-    public int getCode() {
+    public Integer getCode() {
         return code;
     }
 

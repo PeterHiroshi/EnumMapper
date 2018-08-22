@@ -12,7 +12,7 @@ public enum VideoQualityEnum implements EnumType {
     COMMION_SECOND_BEST(7, "普通次优"),
     FLOW_SECOND_BEST(8, "流量次优");
 
-    private int code;
+    private Integer code;
     private String msg;
 
     VideoQualityEnum(int code, String msg) {
@@ -21,7 +21,7 @@ public enum VideoQualityEnum implements EnumType {
     }
 
     @Override
-    public int getCode() {
+    public Integer getCode() {
         return code;
     }
 

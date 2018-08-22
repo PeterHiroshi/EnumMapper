@@ -7,7 +7,7 @@ public enum NewVideoQualityEnum implements EnumType {
     S2(3, "S2"),
     S1(4, "S1");
 
-    private int code;
+    private Integer code;
     private String msg;
 
     NewVideoQualityEnum(int code, String msg) {
@@ -16,7 +16,7 @@ public enum NewVideoQualityEnum implements EnumType {
     }
 
     @Override
-    public int getCode() {
+    public Integer getCode() {
         return code;
     }
 

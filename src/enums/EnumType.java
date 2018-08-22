@@ -1,7 +1,7 @@
 package enums;
 
 public interface EnumType {
-    public int getCode();
+    public Integer getCode();
     public String getMsg();
     public String getDesc();
 }
