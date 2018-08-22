@@ -8,13 +8,13 @@ public class MyLog {
     private Integer pre;
     private Integer post;
 
-    public MyLog(Integer type, Integer pre, Integer post) {
+    MyLog(Integer type, Integer pre, Integer post) {
         this.type = type;
         this.pre = pre;
         this.post = post;
     }
 
-    public Integer getType() {
+    Integer getType() {
         return type;
     }
 
@@ -22,7 +22,7 @@ public class MyLog {
         this.type = type;
     }
 
-    public Integer getPre() {
+    Integer getPre() {
         return pre;
     }
 
@@ -30,7 +30,7 @@ public class MyLog {
         this.pre = pre;
     }
 
-    public Integer getPost() {
+    Integer getPost() {
         return post;
     }
 

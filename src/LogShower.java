@@ -3,26 +3,26 @@ import mapper.MapperClass;
 import java.util.List;
 import java.util.Map;
 
-public class LogShower {
+class LogShower {
 
     private List<MyLog> logList;
 
-    public LogShower(List<MyLog> logList) {
+    LogShower(List<MyLog> logList) {
         this.logList = logList;
     }
 
-    public void show() {
+    void show() {
         MapperClass mc;
-        for (MyLog logEtem : logList) {
-            mc = EnumMapperUtil.getMapperClassByFieldName(logEtem, "type");
+        for (MyLog log : logList) {
+            mc = EnumMapperUtil.getMapperClass(log, log.getType());
             if (mc != null) {
                 String enumClassMsg = mc.getMsg();
                 Class enumClass = mc.getEnumClass();
                 Map<Integer, String> codeMsgMap = EnumMapperUtil.getCodeMsgMapByEnumClass(enumClass);
                 String preMsg =
-                        codeMsgMap.entrySet().stream().filter(codeMsg->codeMsg.getKey().equals(logEtem.getPre())).map(Map.Entry::getValue).findFirst().orElse("<invalid code>");
+                        codeMsgMap.entrySet().stream().filter(codeMsg-> codeMsg.getKey().equals(log.getPre())).map(Map.Entry::getValue).findFirst().orElse("<invalid code>");
                 String postMsg =
-                        codeMsgMap.entrySet().stream().filter(codeMsg->codeMsg.getKey().equals(logEtem.getPost())).map(Map.Entry::getValue).findFirst().orElse("<invalid code>");
+                        codeMsgMap.entrySet().stream().filter(codeMsg->codeMsg.getKey().equals(log.getPost())).map(Map.Entry::getValue).findFirst().orElse("<invalid code>");
                 System.out.println(enumClassMsg + ": " + preMsg + "------->" + postMsg);
             }
         }
