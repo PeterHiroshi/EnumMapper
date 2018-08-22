@@ -48,7 +48,7 @@ class EnumMapperUtil {
 
     static MapperClass getMapperClass(Object obj, Integer enumTypeCode) {
         if (cacheMap.containsKey(enumTypeCode)) {
-            return (MapperClass) cacheMap.get(enumTypeCode);
+            return (MapperClass)cacheMap.get(enumTypeCode);
         }
         MapperClass mc;
         Field field = getEnumTypeMapperField(obj.getClass());
