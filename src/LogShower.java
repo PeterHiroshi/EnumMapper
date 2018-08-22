@@ -20,7 +20,7 @@ class LogShower {
                 Class enumClass = mc.getEnumClass();
                 Map<Integer, String> codeMsgMap = EnumMapperUtil.getCodeMsgMapByEnumClass(enumClass);
                 String preMsg =
-                        codeMsgMap.entrySet().stream().filter(codeMsg-> codeMsg.getKey().equals(log.getPre())).map(Map.Entry::getValue).findFirst().orElse("<invalid code>");
+                        codeMsgMap.entrySet().stream().filter(codeMsg->codeMsg.getKey().equals(log.getPre())).map(Map.Entry::getValue).findFirst().orElse("<invalid code>");
                 String postMsg =
                         codeMsgMap.entrySet().stream().filter(codeMsg->codeMsg.getKey().equals(log.getPost())).map(Map.Entry::getValue).findFirst().orElse("<invalid code>");
                 System.out.println(enumClassMsg + ": " + preMsg + "------->" + postMsg);
