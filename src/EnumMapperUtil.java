@@ -28,10 +28,10 @@ class EnumMapperUtil {
         if (cacheMap.containsKey(enumClass)) {
             return (Map<Integer, String>)cacheMap.get(enumClass);
         }
-        Map<Integer, String> codeMsgMap = new HashMap<>();
         if (!enumClass.isEnum()) {
-            return codeMsgMap;
+            return null;
         }
+        Map<Integer, String> codeMsgMap = new HashMap<>();
         try {
             Method getCode = enumClass.getMethod("getCode");
             Method getMsg = enumClass.getMethod("getMsg");
