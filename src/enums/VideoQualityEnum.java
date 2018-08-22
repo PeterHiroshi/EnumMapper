@@ -30,4 +30,8 @@ public enum VideoQualityEnum implements EnumType {
         return msg;
     }
 
+    @Override
+    public String getDesc() {
+        return "视频质量";
+    }
 }

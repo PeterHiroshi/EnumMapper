@@ -1,8 +1,3 @@
-import annotation.EnumTypeMapper;
-import mapper.MapperClass;
-import mapper.MapperEnum;
-
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
@@ -10,57 +5,23 @@ import java.util.concurrent.ConcurrentHashMap;
 
 class EnumMapperUtil {
 
-    private static final String ENUM_MAPPER_PACKAGE_NAME = "mapper";
     private static final int CACHE_MAX_SIZE = 1 << 6;
 
     private static ConcurrentHashMap<Object, Object> cacheMap = new ConcurrentHashMap<>();
 
-    static String getMsgByCodeFromEnumClass(Class enumClass, Integer code) {
-        if (cacheMap.containsKey(enumClass.toString()+code)) {
-            return (String)cacheMap.get(enumClass.toString()+code);
+    static Map<String, String> getDescMsgMapByCodeFromEnumClass(Class enumClass, Integer code) {
+        if (cacheMap.containsKey(buildKey(enumClass, code))) {
+            return (Map<String, String>)cacheMap.get(buildKey(enumClass, code));
         }
-        Map<Integer, String> codeMsgMap = getCodeMsgMapByEnumClass(enumClass);
+        Map<Integer, MapperClass> codeMsgMap = getCodeMsgMapByEnumClass(enumClass);
         if (codeMsgMap != null && !codeMsgMap.isEmpty()) {
-            String msg = codeMsgMap.entrySet().stream().filter(codeMsg->codeMsg.getKey().equals(code)).map(Map.Entry::getValue).findFirst().orElse("<invalid code>");
-            addToCache(enumClass.toString()+code, msg);
-            return msg;
-        }
-        return "<error>";
-    }
-
-    static MapperClass getMapperClass(Object obj, Integer enumTypeCode) {
-        if (cacheMap.containsKey(enumTypeCode)) {
-            return (MapperClass)cacheMap.get(enumTypeCode);
-        }
-        MapperClass mc;
-        Field field = getEnumTypeMapperField(obj.getClass());
-        if (field == null) {
-            return null;
-        }
-        Class enumClass;
-        String mapperEnumName = getEnumTypeNameByField(field);
-        try {
-            enumClass = getClassByClassName(mapperEnumName);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-        if (enumClass!=null && enumClass.isEnum()) {
-            Object[] enumMapperObjs = enumClass.getEnumConstants();
-            List<MapperEnum> enumMappers = new ArrayList<>();
-            for (Object o : enumMapperObjs) {
-                enumMappers.add(MapperEnum.class.cast(o));
-            }
-            MapperEnum mapperConstant = enumMappers.stream().
-                    filter(mapperEnum -> enumTypeCode.equals(mapperEnum.getTypeCode())).findFirst().orElse(null);
-            if (mapperConstant != null) {
-                mc = new MapperClass(mapperConstant.getEnumClass(), mapperConstant.getMsg());
-                addToCache(enumTypeCode, mc);
-                return mc;
-            } else {
-                System.out.println("<invalid enum type code>");
-                return null;
-            }
+            MapperClass mc = codeMsgMap.entrySet().stream().filter(codeMsg->codeMsg.getKey().equals(code)).map(Map.Entry::getValue).findFirst().orElse(null);
+            String desc = (mc == null) ? codeMsgMap.values().iterator().next().getDesc() : mc.getDesc();
+            String msg = (mc == null) ? "<invalid code>" : mc.getMsg();
+            Map<String, String> descMsgMap = new HashMap<>();
+            descMsgMap.put(desc, msg);
+            addToCache(buildKey(enumClass, code), descMsgMap);
+            return descMsgMap;
         }
         return null;
     }
@@ -74,20 +35,25 @@ class EnumMapperUtil {
         cacheMap.put(key, value);
     }
 
-    private static Map<Integer, String> getCodeMsgMapByEnumClass(Class enumClass) {
+    private static String buildKey(Class clazz, Integer code) {
+        return String.format("%s::%s", clazz.toString(), code);
+    }
+
+    private static Map<Integer, MapperClass> getCodeMsgMapByEnumClass(Class enumClass) {
         if (cacheMap.containsKey(enumClass)) {
-            return (Map<Integer, String>)cacheMap.get(enumClass);
+            return (Map<Integer, MapperClass>)cacheMap.get(enumClass);
         }
         if (!enumClass.isEnum()) {
             return null;
         }
-        Map<Integer, String> codeMsgMap = new HashMap<>();
+        Map<Integer, MapperClass> codeMsgMap = new HashMap<>();
         try {
             Method getCode = enumClass.getMethod("getCode");
             Method getMsg = enumClass.getMethod("getMsg");
+            Method getDesc = enumClass.getMethod("getDesc");
             Object[] objs = enumClass.getEnumConstants();
             for (Object obj : objs) {
-                codeMsgMap.put((Integer)getCode.invoke(obj), (String)getMsg.invoke(obj));
+                codeMsgMap.put((Integer)getCode.invoke(obj), new MapperClass((String)getDesc.invoke(obj),(String)getMsg.invoke(obj)));
             }
             cacheMap.put(enumClass, codeMsgMap);
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
@@ -97,23 +63,5 @@ class EnumMapperUtil {
         return codeMsgMap;
     }
 
-    private static Field getEnumTypeMapperField(Class clazz) {
-        List<Field> fields = java.util.Arrays.asList(clazz.getDeclaredFields());
-        return fields.stream().filter(field -> field.isAnnotationPresent(EnumTypeMapper.class)).findFirst().orElse(null);
-    }
 
-    private static Class getClassByClassName(String className){
-        Class clazz;
-        try {
-            clazz = Class.forName(ENUM_MAPPER_PACKAGE_NAME + "." + className);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            return null;
-        }
-        return clazz;
-    }
-
-    private static String getEnumTypeNameByField(Field field) {
-        return field.getAnnotation(EnumTypeMapper.class).type();
-    }
 }

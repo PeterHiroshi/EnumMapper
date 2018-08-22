@@ -23,4 +23,11 @@ public enum PostFlagEnum implements EnumType {
     public String getMsg() {
         return msg;
     }
+
+    @Override
+    public String getDesc() {
+        return "post_status";
+    }
+
+
 }

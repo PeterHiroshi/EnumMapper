@@ -1,6 +1,5 @@
-import mapper.MapperClass;
-
 import java.util.List;
+import java.util.Map;
 
 class LogShower {
 
@@ -11,16 +10,19 @@ class LogShower {
     }
 
     void show() {
-        MapperClass mc;
+        String desc;
+        String pre;
+        String post;
         for (MyLog log : logList) {
-            mc = EnumMapperUtil.getMapperClass(log, log.getType());
-            if (mc != null) {
-                String enumClassMsg = mc.getMsg();
-                Class enumClass = mc.getEnumClass();
-                String preMsg = EnumMapperUtil.getMsgByCodeFromEnumClass(enumClass, log.getPre());
-                String postMsg = EnumMapperUtil.getMsgByCodeFromEnumClass(enumClass, log.getPost());
-                System.out.println(enumClassMsg + ": " + preMsg + "------->" + postMsg);
+            Map<String, String> descMsgPreMap = EnumMapperUtil.getDescMsgMapByCodeFromEnumClass(log.getEnumClass(), log.getPre());
+            if (descMsgPreMap == null) {
+                continue;
             }
+            Map<String, String> descMsgPostMap = EnumMapperUtil.getDescMsgMapByCodeFromEnumClass(log.getEnumClass(), log.getPost());
+            desc = descMsgPreMap.keySet().iterator().next();
+            pre = descMsgPreMap.values().iterator().next();
+            post = descMsgPostMap.values().iterator().next();
+            System.out.println(desc + ": " + pre + "--->" + post);
         }
     }
 

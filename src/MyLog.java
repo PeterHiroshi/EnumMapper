@@ -1,25 +1,21 @@
-import annotation.EnumTypeMapper;
-
 public class MyLog {
 
-    @EnumTypeMapper(type = EnumTypeMapper.MAPPER)
-    private Integer type;
-
+    private Class enumClass;
     private Integer pre;
     private Integer post;
 
-    MyLog(Integer type, Integer pre, Integer post) {
-        this.type = type;
+    MyLog(Class enumClass, Integer pre, Integer post) {
+        this.enumClass = enumClass;
         this.pre = pre;
         this.post = post;
     }
 
-    Integer getType() {
-        return type;
+    public Class getEnumClass() {
+        return enumClass;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public void setEnumClass(Class enumClass) {
+        this.enumClass = enumClass;
     }
 
     Integer getPre() {

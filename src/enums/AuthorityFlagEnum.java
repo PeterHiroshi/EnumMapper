@@ -23,4 +23,11 @@ public enum AuthorityFlagEnum implements EnumType {
     public String getMsg() {
         return msg;
     }
+
+    @Override
+    public String getDesc() {
+        return "authority";
+    }
+
+
 }

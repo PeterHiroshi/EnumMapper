@@ -24,4 +24,9 @@ public enum NewVideoQualityEnum implements EnumType {
     public String getMsg() {
         return msg;
     }
+
+    @Override
+    public String getDesc() {
+        return "新视频质量";
+    }
 }
