@@ -15,36 +15,17 @@ class EnumMapperUtil {
 
     private static ConcurrentHashMap<Object, Object> cacheMap = new ConcurrentHashMap<>();
 
-    private EnumMapperUtil() {}
-
-    private static void addToCache(Object key, Object value) {
-        if (cacheMap.size() > CACHE_MAX_SIZE-1) {
-            cacheMap.clear();
+    static String getMsgByCodeFromEnumClass(Class enumClass, Integer code) {
+        if (cacheMap.containsKey(enumClass.toString()+code)) {
+            return (String)cacheMap.get(enumClass.toString()+code);
         }
-        cacheMap.put(key, value);
-    }
-
-    static Map<Integer, String> getCodeMsgMapByEnumClass(Class enumClass) {
-        if (cacheMap.containsKey(enumClass)) {
-            return (Map<Integer, String>)cacheMap.get(enumClass);
+        Map<Integer, String> codeMsgMap = getCodeMsgMapByEnumClass(enumClass);
+        if (codeMsgMap != null && !codeMsgMap.isEmpty()) {
+            String msg = codeMsgMap.entrySet().stream().filter(codeMsg->codeMsg.getKey().equals(code)).map(Map.Entry::getValue).findFirst().orElse("<invalid code>");
+            addToCache(enumClass.toString()+code, msg);
+            return msg;
         }
-        if (!enumClass.isEnum()) {
-            return null;
-        }
-        Map<Integer, String> codeMsgMap = new HashMap<>();
-        try {
-            Method getCode = enumClass.getMethod("getCode");
-            Method getMsg = enumClass.getMethod("getMsg");
-            Object[] objs = enumClass.getEnumConstants();
-            for (Object obj : objs) {
-                codeMsgMap.put((Integer)getCode.invoke(obj), (String)getMsg.invoke(obj));
-            }
-            cacheMap.put(enumClass, codeMsgMap);
-        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
-            return null;
-        }
-        return codeMsgMap;
+        return "<error>";
     }
 
     static MapperClass getMapperClass(Object obj, Integer enumTypeCode) {
@@ -82,6 +63,38 @@ class EnumMapperUtil {
             }
         }
         return null;
+    }
+
+    private EnumMapperUtil() {}
+
+    private static void addToCache(Object key, Object value) {
+        if (cacheMap.size() > CACHE_MAX_SIZE-1) {
+            cacheMap.clear();
+        }
+        cacheMap.put(key, value);
+    }
+
+    private static Map<Integer, String> getCodeMsgMapByEnumClass(Class enumClass) {
+        if (cacheMap.containsKey(enumClass)) {
+            return (Map<Integer, String>)cacheMap.get(enumClass);
+        }
+        if (!enumClass.isEnum()) {
+            return null;
+        }
+        Map<Integer, String> codeMsgMap = new HashMap<>();
+        try {
+            Method getCode = enumClass.getMethod("getCode");
+            Method getMsg = enumClass.getMethod("getMsg");
+            Object[] objs = enumClass.getEnumConstants();
+            for (Object obj : objs) {
+                codeMsgMap.put((Integer)getCode.invoke(obj), (String)getMsg.invoke(obj));
+            }
+            cacheMap.put(enumClass, codeMsgMap);
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return codeMsgMap;
     }
 
     private static Field getEnumTypeMapperField(Class clazz) {

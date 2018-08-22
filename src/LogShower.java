@@ -1,7 +1,6 @@
 import mapper.MapperClass;
 
 import java.util.List;
-import java.util.Map;
 
 class LogShower {
 
@@ -18,14 +17,9 @@ class LogShower {
             if (mc != null) {
                 String enumClassMsg = mc.getMsg();
                 Class enumClass = mc.getEnumClass();
-                Map<Integer, String> codeMsgMap = EnumMapperUtil.getCodeMsgMapByEnumClass(enumClass);
-                if (codeMsgMap != null && !codeMsgMap.isEmpty()) {
-                    String preMsg =
-                            codeMsgMap.entrySet().stream().filter(codeMsg->codeMsg.getKey().equals(log.getPre())).map(Map.Entry::getValue).findFirst().orElse("<invalid code>");
-                    String postMsg =
-                            codeMsgMap.entrySet().stream().filter(codeMsg->codeMsg.getKey().equals(log.getPost())).map(Map.Entry::getValue).findFirst().orElse("<invalid code>");
-                    System.out.println(enumClassMsg + ": " + preMsg + "------->" + postMsg);
-                }
+                String preMsg = EnumMapperUtil.getMsgByCodeFromEnumClass(enumClass, log.getPre());
+                String postMsg = EnumMapperUtil.getMsgByCodeFromEnumClass(enumClass, log.getPost());
+                System.out.println(enumClassMsg + ": " + preMsg + "------->" + postMsg);
             }
         }
     }
