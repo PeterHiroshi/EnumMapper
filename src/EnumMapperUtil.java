@@ -90,11 +90,12 @@ class EnumMapperUtil {
     }
 
     private static Class getClassByClassName(String className){
-        Class clazz = null;
+        Class clazz;
         try {
             clazz = Class.forName(ENUM_MAPPER_PACKAGE_NAME + "." + className);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+            return null;
         }
         return clazz;
     }
