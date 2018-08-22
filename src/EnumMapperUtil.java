@@ -18,7 +18,7 @@ class EnumMapperUtil {
     private EnumMapperUtil() {}
 
     private static void addToCache(Object key, Object value) {
-        if (cacheMap.size() > CACHE_MAX_SIZE) {
+        if (cacheMap.size() > CACHE_MAX_SIZE-1) {
             cacheMap.clear();
         }
         cacheMap.put(key, value);
