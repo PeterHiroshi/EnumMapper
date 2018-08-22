@@ -15,10 +15,10 @@ class LogShower {
         String post;
         for (MyLog log : logList) {
             Map<String, String> descMsgPreMap = EnumMapperUtil.getDescMsgMapByCodeFromEnumClass(log.getEnumClass(), log.getPre());
-            if (descMsgPreMap == null) {
+            Map<String, String> descMsgPostMap = EnumMapperUtil.getDescMsgMapByCodeFromEnumClass(log.getEnumClass(), log.getPost());
+            if (descMsgPreMap == null || descMsgPostMap == null) {
                 continue;
             }
-            Map<String, String> descMsgPostMap = EnumMapperUtil.getDescMsgMapByCodeFromEnumClass(log.getEnumClass(), log.getPost());
             desc = descMsgPreMap.keySet().iterator().next();
             pre = descMsgPreMap.values().iterator().next();
             post = descMsgPostMap.values().iterator().next();

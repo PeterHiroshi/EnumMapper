@@ -3,12 +3,12 @@ public class MapperClass {
     private String desc;
     private String msg;
 
-    public MapperClass(String desc, String msg) {
+    MapperClass(String desc, String msg) {
         this.desc = desc;
         this.msg = msg;
     }
 
-    public String getDesc() {
+    String getDesc() {
         return desc;
     }
 
@@ -16,7 +16,7 @@ public class MapperClass {
         this.desc = desc;
     }
 
-    public String getMsg() {
+    String getMsg() {
         return msg;
     }
 
