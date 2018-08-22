@@ -55,7 +55,7 @@ class EnumMapperUtil {
         if (field == null) {
             return null;
         }
-        Class<Object> enumClass;
+        Class enumClass;
         String mapperEnumName = getEnumTypeNameByField(field);
         try {
             enumClass = getClassByClassName(mapperEnumName);
