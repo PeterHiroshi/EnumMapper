@@ -32,5 +32,6 @@ public class Main {
         LogShower logShower = new LogShower(logList);
         logShower.show();
         System.out.println(">>Costs " + (System.currentTimeMillis()-t) + "ms");
+
     }
 }
