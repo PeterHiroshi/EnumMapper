@@ -1,3 +1,6 @@
+import enums.EnumType;
+import enums.EnumTypeInstance;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
@@ -9,21 +12,60 @@ class EnumMapperUtil {
 
     private static ConcurrentHashMap<Object, Object> cacheMap = new ConcurrentHashMap<>();
 
-    static Map<String, String> getDescMsgMapByCodeFromEnumClass(Class enumClass, Integer code) {
-        if (cacheMap.containsKey(buildKey(enumClass, code))) {
-            return (Map<String, String>)cacheMap.get(buildKey(enumClass, code));
+    public static String getMsgFromEnumType(EnumType enumType) {
+        if (enumType == null) {
+            return null;
         }
-        Map<Integer, MapperClass> codeMsgMap = getCodeMsgMapByEnumClass(enumClass);
-        if (codeMsgMap != null && !codeMsgMap.isEmpty()) {
-            MapperClass mc = codeMsgMap.entrySet().stream().filter(codeMsg->codeMsg.getKey().equals(code)).map(Map.Entry::getValue).findFirst().orElse(null);
-            String desc = (mc == null) ? codeMsgMap.values().iterator().next().getDesc() : mc.getDesc();
-            String msg = (mc == null) ? "<invalid code>" : mc.getMsg();
-            Map<String, String> descMsgMap = new HashMap<>();
-            descMsgMap.put(desc, msg);
-            addToCache(buildKey(enumClass, code), descMsgMap);
-            return descMsgMap;
+        return enumType.getMsg();
+    }
+
+    public static String getDescFromEnumType(EnumType enumType) {
+        if (enumType == null) {
+            return null;
+        }
+        return enumType.getDesc();
+    }
+
+    static EnumType getEnumTypeByCodeFromEnumClass(Class enumClass, Integer code) {
+        String key = buildKey(enumClass, code);
+        if (cacheMap.containsKey(key)) {
+            return (EnumType) cacheMap.get(key);
+        }
+        List<EnumType> enumTypeList = getEnumTypeListByEnumClass(enumClass);
+        if (enumTypeList != null && !enumTypeList.isEmpty()) {
+            EnumType enumType = enumTypeList.stream().filter(e->e.getCode().equals(code)).findFirst().orElse(null);
+            String desc = (enumType == null) ? enumTypeList.get(0).getDesc() : enumType.getDesc();
+            String msg = (enumType == null) ? "<invalid code>" : enumType.getMsg();
+            EnumType enumTypeInstance = new EnumTypeInstance(code, msg, desc);
+            addToCache(key, enumTypeInstance);
+            return enumTypeInstance;
         }
         return null;
+
+    }
+
+    private static List<EnumType> getEnumTypeListByEnumClass(Class enumClass) {
+        if (cacheMap.containsKey(enumClass)) {
+            return (List<EnumType>)cacheMap.get(enumClass);
+        }
+        if (!enumClass.isEnum()) {
+            return null;
+        }
+        List<EnumType> enumTypeList = new ArrayList<>();
+        try {
+            Method getCode = enumClass.getMethod("getCode");
+            Method getMsg = enumClass.getMethod("getMsg");
+            Method getDesc = enumClass.getMethod("getDesc");
+            Object[] objs = enumClass.getEnumConstants();
+            for (Object obj : objs) {
+                enumTypeList.add(new EnumTypeInstance((Integer)getCode.invoke(obj), (String)getMsg.invoke(obj), (String)getDesc.invoke(obj)));
+            }
+            cacheMap.put(enumClass, enumTypeList);
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return enumTypeList;
     }
 
     private EnumMapperUtil() {}
@@ -38,30 +80,4 @@ class EnumMapperUtil {
     private static String buildKey(Class clazz, Integer code) {
         return String.format("%s::%s", clazz.toString(), code);
     }
-
-    private static Map<Integer, MapperClass> getCodeMsgMapByEnumClass(Class enumClass) {
-        if (cacheMap.containsKey(enumClass)) {
-            return (Map<Integer, MapperClass>)cacheMap.get(enumClass);
-        }
-        if (!enumClass.isEnum()) {
-            return null;
-        }
-        Map<Integer, MapperClass> codeMsgMap = new HashMap<>();
-        try {
-            Method getCode = enumClass.getMethod("getCode");
-            Method getMsg = enumClass.getMethod("getMsg");
-            Method getDesc = enumClass.getMethod("getDesc");
-            Object[] objs = enumClass.getEnumConstants();
-            for (Object obj : objs) {
-                codeMsgMap.put((Integer)getCode.invoke(obj), new MapperClass((String)getDesc.invoke(obj),(String)getMsg.invoke(obj)));
-            }
-            cacheMap.put(enumClass, codeMsgMap);
-        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
-            return null;
-        }
-        return codeMsgMap;
-    }
-
-
 }

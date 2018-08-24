@@ -1,5 +1,6 @@
+import enums.EnumType;
+
 import java.util.List;
-import java.util.Map;
 
 class LogShower {
 
@@ -11,18 +12,18 @@ class LogShower {
 
     void show() {
         String desc;
-        String pre;
-        String post;
+        String preMsg;
+        String postMsg;
         for (MyLog log : logList) {
-            Map<String, String> descMsgPreMap = EnumMapperUtil.getDescMsgMapByCodeFromEnumClass(log.getEnumClass(), log.getPre());
-            Map<String, String> descMsgPostMap = EnumMapperUtil.getDescMsgMapByCodeFromEnumClass(log.getEnumClass(), log.getPost());
-            if (descMsgPreMap == null || descMsgPostMap == null) {
+            EnumType enumTypeInstancePre = EnumMapperUtil.getEnumTypeByCodeFromEnumClass(log.getEnumClass(), log.getPre());
+            EnumType enumTypeInstancePost = EnumMapperUtil.getEnumTypeByCodeFromEnumClass(log.getEnumClass(), log.getPost());
+            if (enumTypeInstancePre == null || enumTypeInstancePost == null) {
                 continue;
             }
-            desc = descMsgPreMap.keySet().iterator().next();
-            pre = descMsgPreMap.values().iterator().next();
-            post = descMsgPostMap.values().iterator().next();
-            System.out.println(desc + ": " + pre + "--->" + post);
+            desc = EnumMapperUtil.getDescFromEnumType(enumTypeInstancePre);
+            preMsg = EnumMapperUtil.getMsgFromEnumType(enumTypeInstancePre);
+            postMsg = EnumMapperUtil.getMsgFromEnumType(enumTypeInstancePost);
+            System.out.println(desc + ": " + preMsg + "--->" + postMsg);
         }
     }
 
