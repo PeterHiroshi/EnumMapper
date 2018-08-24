@@ -34,11 +34,13 @@ class EnumMapperUtil {
         List<EnumType> enumTypeList = getEnumTypeListByEnumClass(enumClass);
         if (enumTypeList != null && !enumTypeList.isEmpty()) {
             EnumType enumType = enumTypeList.stream().filter(e->e.getCode().equals(code)).findFirst().orElse(null);
-            String desc = (enumType == null) ? enumTypeList.get(0).getDesc() : enumType.getDesc();
-            String msg = (enumType == null) ? "<invalid code>" : enumType.getMsg();
-            EnumType enumTypeInstance = new EnumTypeInstance(code, msg, desc);
-            addToCache(key, enumTypeInstance);
-            return enumTypeInstance;
+            if (enumType == null) {
+                String desc = enumTypeList.get(0).getDesc();
+                String msg = "<invalid code>";
+                enumType = new EnumTypeInstance(code, msg, desc);
+            }
+            addToCache(key, enumType);
+            return enumType;
         }
         return null;
 

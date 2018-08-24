@@ -4,9 +4,7 @@
     <list default="true" id="31ea67f4-24f7-451b-9de6-6abc696e1c12" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MyTest/EnumMapperUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTest/EnumMapperUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTest/LogShower.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTest/LogShower.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MyTest/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTest/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTest/enums/EnumType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTest/enums/EnumType.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/EnumMapperUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/EnumMapperUtil.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -22,11 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="33" column="21" selection-start-line="33" selection-start-column="21" selection-end-line="33" selection-end-column="21" />
+            <state relative-caret-position="340">
+              <caret line="18" column="55" lean-forward="true" selection-start-line="18" selection-start-column="55" selection-end-line="18" selection-end-column="55" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -34,11 +32,20 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="VideoQualityEnum.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/enums/VideoQualityEnum.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="42">
+              <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="EnumType.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/enums/EnumType.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
-              <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
+            <state relative-caret-position="147">
+              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
             </state>
           </provider>
         </entry>
@@ -46,8 +53,8 @@
       <file leaf-file-name="LogShower.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/LogShower.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="12" column="17" lean-forward="true" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+            <state relative-caret-position="273">
+              <caret line="15" column="23" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#134#135#0" expanded="true" />
@@ -57,11 +64,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EnumMapperUtil.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="EnumMapperUtil.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/EnumMapperUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="21" column="4" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
+            <state relative-caret-position="95">
+              <caret line="30" column="40" lean-forward="true" selection-start-line="30" selection-start-column="40" selection-end-line="30" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -162,8 +169,8 @@
         <option value="$PROJECT_DIR$/src/enums/NewVideoQualityEnum.java" />
         <option value="$PROJECT_DIR$/src/enums/PostFlagEnum.java" />
         <option value="$PROJECT_DIR$/src/enums/VideoQualityEnum.java" />
-        <option value="$PROJECT_DIR$/src/enums/EnumType.java" />
         <option value="$PROJECT_DIR$/src/enums/EnumTypeInstance.java" />
+        <option value="$PROJECT_DIR$/src/enums/EnumType.java" />
         <option value="$PROJECT_DIR$/src/LogShower.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/EnumMapperUtil.java" />
@@ -203,12 +210,6 @@
               <item name="EnumMapper" type="b2602c69:ProjectViewProjectNode" />
               <item name="EnumMapper" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="EnumMapper" type="b2602c69:ProjectViewProjectNode" />
-              <item name="EnumMapper" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="enums" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -315,7 +316,7 @@
       <workItem from="1534472498537" duration="21373000" />
       <workItem from="1534684752389" duration="6138000" />
       <workItem from="1534727510112" duration="53429000" />
-      <workItem from="1534922454271" duration="21195000" />
+      <workItem from="1534922454271" duration="24382000" />
     </task>
     <task id="LOCAL-00001" summary="add try &amp; catch blocks">
       <created>1534728257513</created>
@@ -527,11 +528,25 @@
       <option name="project" value="LOCAL" />
       <updated>1535099654082</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="new code for dev branch">
+      <created>1535099687954</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1535099687954</updated>
+    </task>
+    <task id="LOCAL-00032" summary="new code for dev branch">
+      <created>1535099791206</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1535099791206</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="113463000" />
+    <option name="totallyTimeSpent" value="116650000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -546,7 +561,7 @@
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.26398212" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.23825504" />
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.20693512" />
       <window_info id="Capture Tool" order="6" />
@@ -573,10 +588,10 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="right" id="Coverage" order="0" side_tool="true" weight="0.32995737" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.26398212" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.23825504" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15085287" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15085287" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Theme Preview" order="6" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -858,17 +873,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/enums/VideoQualityEnum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="15" column="23" lean-forward="true" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
-          <folding>
-            <element signature="e#637#638#0" expanded="true" />
-            <element signature="e#666#667#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/enums/NewVideoQualityEnum.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -888,13 +892,6 @@
             <element signature="e#284#285#0" expanded="true" />
             <element signature="e#316#317#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/enums/EnumType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -937,20 +934,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/enums/EnumType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="33" column="21" selection-start-line="33" selection-start-column="21" selection-end-line="33" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="147">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/enums/VideoQualityEnum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/LogShower.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="12" column="17" lean-forward="true" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+        <state relative-caret-position="273">
+          <caret line="15" column="23" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#134#135#0" expanded="true" />
@@ -961,8 +962,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/EnumMapperUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="21" column="4" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
+        <state relative-caret-position="95">
+          <caret line="30" column="40" lean-forward="true" selection-start-line="30" selection-start-column="40" selection-end-line="30" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="18" column="55" lean-forward="true" selection-start-line="18" selection-start-column="55" selection-end-line="18" selection-end-column="55" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
