@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="31ea67f4-24f7-451b-9de6-6abc696e1c12" name="Default" comment="new code for dev branch">
-      <change afterPath="$PROJECT_DIR$/src/enums/EnumTypeInstance.java" afterDir="false" />
+    <list default="true" id="31ea67f4-24f7-451b-9de6-6abc696e1c12" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MyTest/EnumMapperUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTest/EnumMapperUtil.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MyTest/LogShower.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTest/LogShower.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MyTest/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTest/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTest/MapperClass.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MyTest/enums/EnumType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTest/enums/EnumType.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/EnumMapperUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/EnumMapperUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LogShower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LogShower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MapperClass.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,11 +22,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="34" column="79" selection-start-line="34" selection-start-column="79" selection-end-line="34" selection-end-column="79" />
+            <state relative-caret-position="441">
+              <caret line="33" column="21" selection-start-line="33" selection-start-column="21" selection-end-line="33" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -51,8 +46,8 @@
       <file leaf-file-name="LogShower.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/LogShower.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="372">
-              <caret line="24" column="78" selection-start-line="24" selection-start-column="78" selection-end-line="24" selection-end-column="78" />
+            <state relative-caret-position="202">
+              <caret line="12" column="17" lean-forward="true" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#134#135#0" expanded="true" />
@@ -62,11 +57,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EnumMapperUtil.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="EnumMapperUtil.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/EnumMapperUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="29" column="47" lean-forward="true" selection-start-line="29" selection-start-column="47" selection-end-line="29" selection-end-column="47" />
+            <state relative-caret-position="441">
+              <caret line="21" column="4" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -170,8 +165,8 @@
         <option value="$PROJECT_DIR$/src/enums/EnumType.java" />
         <option value="$PROJECT_DIR$/src/enums/EnumTypeInstance.java" />
         <option value="$PROJECT_DIR$/src/LogShower.java" />
-        <option value="$PROJECT_DIR$/src/EnumMapperUtil.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/src/EnumMapperUtil.java" />
       </list>
     </option>
   </component>
@@ -320,7 +315,7 @@
       <workItem from="1534472498537" duration="21373000" />
       <workItem from="1534684752389" duration="6138000" />
       <workItem from="1534727510112" duration="53429000" />
-      <workItem from="1534922454271" duration="21070000" />
+      <workItem from="1534922454271" duration="21195000" />
     </task>
     <task id="LOCAL-00001" summary="add try &amp; catch blocks">
       <created>1534728257513</created>
@@ -525,11 +520,18 @@
       <option name="project" value="LOCAL" />
       <updated>1534930456330</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="new code for dev branch">
+      <created>1535099654082</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1535099654082</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="113338000" />
+    <option name="totallyTimeSpent" value="113463000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -903,18 +905,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/LogShower.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="24" column="78" selection-start-line="24" selection-start-column="78" selection-end-line="24" selection-end-column="78" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#134#135#0" expanded="true" />
-            <element signature="e#172#173#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/enums/EnumTypeInstance.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
@@ -947,20 +937,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/EnumMapperUtil.java">
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="29" column="47" lean-forward="true" selection-start-line="29" selection-start-column="47" selection-end-line="29" selection-end-column="47" />
+        <state relative-caret-position="441">
+          <caret line="33" column="21" selection-start-line="33" selection-start-column="21" selection-end-line="33" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/LogShower.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="34" column="79" selection-start-line="34" selection-start-column="79" selection-end-line="34" selection-end-column="79" />
+        <state relative-caret-position="202">
+          <caret line="12" column="17" lean-forward="true" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#134#135#0" expanded="true" />
+            <element signature="e#172#173#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EnumMapperUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="21" column="4" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

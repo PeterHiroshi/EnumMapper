@@ -12,14 +12,14 @@ class EnumMapperUtil {
 
     private static ConcurrentHashMap<Object, Object> cacheMap = new ConcurrentHashMap<>();
 
-    public static String getMsgFromEnumType(EnumType enumType) {
+    static String getMsgFromEnumType(EnumType enumType) {
         if (enumType == null) {
             return null;
         }
         return enumType.getMsg();
     }
 
-    public static String getDescFromEnumType(EnumType enumType) {
+    static String getDescFromEnumType(EnumType enumType) {
         if (enumType == null) {
             return null;
         }
