@@ -20,9 +20,9 @@ class LogShower {
             if (enumTypeInstancePre == null || enumTypeInstancePost == null) {
                 continue;
             }
-            desc = EnumMapperUtil.getDescFromEnumType(enumTypeInstancePre);
-            preMsg = EnumMapperUtil.getMsgFromEnumType(enumTypeInstancePre);
-            postMsg = EnumMapperUtil.getMsgFromEnumType(enumTypeInstancePost);
+            desc = enumTypeInstancePre.getDesc();
+            preMsg = enumTypeInstancePre.getMsg();
+            postMsg = enumTypeInstancePost.getMsg();
             System.out.println(desc + ": " + preMsg + "--->" + postMsg);
         }
     }

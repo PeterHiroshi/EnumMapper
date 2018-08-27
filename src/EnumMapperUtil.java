@@ -12,20 +12,6 @@ class EnumMapperUtil {
 
     private static ConcurrentHashMap<Object, Object> cacheMap = new ConcurrentHashMap<>();
 
-    static String getMsgFromEnumType(EnumType enumType) {
-        if (enumType == null) {
-            return null;
-        }
-        return enumType.getMsg();
-    }
-
-    static String getDescFromEnumType(EnumType enumType) {
-        if (enumType == null) {
-            return null;
-        }
-        return enumType.getDesc();
-    }
-
     static EnumType getEnumTypeByCodeFromEnumClass(Class enumClass, Integer code) {
         String key = buildKey(enumClass, code);
         if (cacheMap.containsKey(key)) {
